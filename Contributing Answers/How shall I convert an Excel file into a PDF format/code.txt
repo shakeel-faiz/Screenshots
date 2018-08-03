@@ -1,0 +1,26 @@
+C#
+
+// Load your source Excel file inside Workbook object
+Aspose.Cells.Workbook wb = new Aspose.Cells.Workbook("SourceExcelFile.xlsx");
+ 
+// Specify Pdf Save Options
+PdfSaveOptions opts = new PdfSaveOptions();
+opts.OnePagePerSheet = true;
+ 
+// Save workbook to PDF format.
+wb.Save("OutputPdfFile.pdf", opts);
+
+-------------------------------------------------
+-------------------------------------------------
+
+Java
+
+// Load your source Excel file inside Workbook object
+com.aspose.cells.Workbook wb = new com.aspose.cells.Workbook("SourceExcelFile.xlsx");
+ 
+// Specify Pdf Save Options
+PdfSaveOptions opts = new PdfSaveOptions();
+opts.setOnePagePerSheet(true);
+ 
+// Save workbook to PDF format.
+wb.save("OutputPdfFile.pdf", opts);
