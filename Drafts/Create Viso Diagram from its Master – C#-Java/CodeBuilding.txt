@@ -1,0 +1,12 @@
+string dir = @"d:\download\";
+
+Diagram dg = new Diagram(dir + "TemplateBuilding2.vsdx");
+
+Page pg = dg.Pages.GetPage("Page-1");
+
+long id = dg.AddShape(5, 5, 5, 5, "Building 2", 0);
+
+Shape buildingShape = pg.Shapes.GetShape(id);
+buildingShape.RefreshData();
+
+dg.Save(dir + "OutputBuilding2.vsdx", SaveFileFormat.VSDX);

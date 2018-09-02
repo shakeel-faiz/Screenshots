@@ -1,0 +1,62 @@
+string dir = @"d:\download\";
+
+Diagram d = new Diagram(dir + "Template.vsdx");
+
+Page pg = d.Pages.GetPage("Page-1");
+
+// Add masters from stencil.
+d.AddMaster(dir + "MyShapes.vssx", "Rectangle");
+d.AddMaster(dir + "MyShapes.vssx", "Ellipse");
+d.AddMaster(dir + "MyShapes.vssx", "Hexagon");
+d.AddMaster(dir + "MyShapes.vssx", "Dynamic connector");
+
+
+long shId = d.AddShape(2.70, 7.54, 1.5, 1, "Rectangle", 0);
+pg.Shapes.GetShape(shId).Name = "shpRect";
+shId = d.AddShape(2.70, 5.1, 2.25, 1.5, "Ellipse", 0);
+pg.Shapes.GetShape(shId).Name = "shpEllipse";
+shId = d.AddShape(6.3, 5.1, 1.5, 1.5, "Hexagon", 0);
+pg.Shapes.GetShape(shId).Name = "shpHexagon";
+shId = d.AddShape(4.3, 3.1, 1.5, 1.5, "Dynamic connector", 0);
+pg.Shapes.GetShape(shId).Name = "shpDynConnect1";
+shId = d.AddShape(4.3, 3.1, 1.5, 1.5, "Dynamic connector", 0);
+pg.Shapes.GetShape(shId).Name = "shpDynConnect2";
+
+Shape shpRect = pg.Shapes.GetShape("shpRect");
+Shape shpEllipse = pg.Shapes.GetShape("shpEllipse");
+Shape shpHexagon = pg.Shapes.GetShape("shpHexagon");
+Shape shpDynConnect1 = pg.Shapes.GetShape("shpDynConnect1");
+Shape shpDynConnect2 = pg.Shapes.GetShape("shpDynConnect2");      
+
+shpRect.Fill.FillForegnd.Value = "#ff0000";
+shpRect.Text.Value.Add(new Cp(0));
+shpRect.Text.Value.Add(new Txt("Structure"));
+shpRect.Chars.Add(new Aspose.Diagram.Char());
+shpRect.Chars[0].IX = 0;
+shpRect.Chars[0].Color.Value = "#FFFFFF";
+shpRect.Chars[0].Style.Value = StyleValue.Bold;
+shpRect.Chars[0].Size.Value = 0.2;
+
+shpEllipse.Fill.FillForegnd.Value = "#00ff00";
+shpEllipse.Text.Value.Add(new Cp(0));
+shpEllipse.Text.Value.Add(new Txt("Role"));
+shpEllipse.Chars.Add(new Aspose.Diagram.Char());
+shpEllipse.Chars[0].IX = 0;
+shpEllipse.Chars[0].Color.Value = "#000000";
+shpEllipse.Chars[0].Style.Value = StyleValue.Bold;
+shpEllipse.Chars[0].Size.Value = 0.2;
+
+shpHexagon.Fill.FillForegnd.Value = "#ffff00";
+shpHexagon.Text.Value.Add(new Cp(0));
+shpHexagon.Text.Value.Add(new Txt("Incentive"));
+shpHexagon.Chars.Add(new Aspose.Diagram.Char());
+shpHexagon.Chars[0].IX = 0;
+shpHexagon.Chars[0].Color.Value = "#000000";
+shpHexagon.Chars[0].Style.Value = StyleValue.Bold;
+shpHexagon.Chars[0].Size.Value = 0.2;
+
+pg.ConnectShapesViaConnector(shpRect, Manipulation.ConnectionPointPlace.Bottom, shpEllipse, Manipulation.ConnectionPointPlace.Top, shpDynConnect1);
+
+pg.ConnectShapesViaConnector(shpHexagon, Manipulation.ConnectionPointPlace.Top, shpEllipse, Manipulation.ConnectionPointPlace.Right, shpDynConnect2);
+
+d.Save(dir + "OutputDone22.vsdx", SaveFileFormat.VSDX);
