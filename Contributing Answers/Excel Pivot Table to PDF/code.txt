@@ -1,0 +1,30 @@
+C#
+-----------------------------------------
+// Path for input and output documents.
+String dirPath = "D:/Download/";
+
+// Load sample Excel file containing the Pivot Table.
+Aspose.Cells.Workbook wb = new Workbook(dirPath + "samplePivotTable.xlsx");
+
+// Specify PDF save options - one page per sheet.
+PdfSaveOptions opts = new PdfSaveOptions();
+opts.OnePagePerSheet = true;
+
+// Save workbook to PDF format with PDF save options.
+wb.Save(dirPath + "outputPivotTable.pdf", opts);
+
+
+Java
+-----------------------------------------
+// Path for input and output documents.
+String dirPath = "D:/Download/";
+
+// Load sample Excel file containing the Pivot Table.
+com.aspose.cells.Workbook wb = new Workbook(dirPath + "samplePivotTable.xlsx");
+
+// Specify PDF save options - one page per sheet.
+PdfSaveOptions opts = new PdfSaveOptions();
+opts.setOnePagePerSheet(true);
+
+// Save workbook to PDF format with PDF save options.
+wb.save(dirPath + "outputPivotTable.pdf", opts);
